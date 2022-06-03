@@ -1,0 +1,63 @@
+/*
+.pr__header .inner .logo .brand{
+    background-image:url("../images/logo-artist-nepal.svg");
+    height:65px;
+    background-position-y: 0;
+}
+@media (min-width: 960px){
+    .pr__header .inner .logo {
+        width: 206px;
+    }
+}
+
+.gallery-wrap-inset {
+    margin-left: -10px;
+    margin-right: -10px;
+}
+@media only screen and (min-width: 1281px) {
+    .gallery-wrap-inset {
+        max-width: 90%;
+        margin: 0 auto;
+    }
+}
+.grid-item { display: block; width: calc(33.33% - 20px); padding: 10px; }
+.grid-item--small { width: calc(25% - 20px); padding: 10px; }
+@media only screen and (max-width: 769px) {
+    .grid-item{
+        width: calc(50% - 10px);
+        padding: 5px;
+    }
+}
+
+.item.service-box.style-one:hover > .inner .overlay-icon.icon.pr-arrow-left{
+    left: 0;
+}
+*/
+
+/*-- form --*/
+/*
+.item.service-box.style-one--small > .inner{
+    padding: 18px;
+}
+.item.service-box.style-one--small:hover > .inner{
+    padding-left: 0;
+}
+.item.service-box.style-one--small > .inner .title{
+    font-size: 16px;
+}
+.item.service-box.style-one--small:hover > .inner .title{
+    transform: translateX(20px);
+}
+.service-boxes--small >* {
+    padding-left: 10px;
+}
+.service-boxes--small>.uk-grid-margin{
+    margin-top: 10px;
+}
+.post.type-post > .outer > .service-boxes--small .inner .link{
+    padding-top: 0;
+}
+.post.type-post > .outer > .inner .title{
+    margin: 0;
+}
+*/
