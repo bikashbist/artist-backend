@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use Auth;
 use Illuminate\Http\Request;
+use App\Models\Category;
+use App\Models\ArtistForm;
 
 class HomeController extends Controller
 {
@@ -13,9 +15,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $artForm = ArtistForm::get();
         if(Auth::id()){
             if(Auth::user()->usertype=='0'){
-                return view('admin.base');
+                return view('admin.base',compact('artForm'));
             }
             elseif (Auth::user()->usertype=='2'){
                 return view('artist.base');
@@ -97,4 +100,42 @@ class HomeController extends Controller
     {
         //
     }
+    public function detailArtist()
+    {
+        return view('user.artist-detail');
+    }
+    public function detailForm()
+    {
+        $cat = Category::get();
+        return view('user.artist-form',compact('cat'));
+    }
+
+    //artist form
+
+    public function artistStore(Request $request)
+    {
+        $this->validate($request,[
+            'name'=>'required',
+            'category'=>'required',
+            'address'=>'required',
+            'email'=>'required',
+            'phone'=>'required',
+            'description'=>'required',
+            'image'=>'required|mimes:jpeg,png,jpg,gif,svg',
+        ]);
+        $image = $request->file('image')->store('public/file');
+        ArtistForm::create([
+            'name'=>$request->name,
+            'description'=>$request->description,
+            'category'=>$request->category,
+            'address'=>$request->address,
+            'email'=>$request->email,
+            'phone'=>$request->phone,
+            'image'=>$image
+        ]);
+        return redirect()->back()->with('message','Thank You, Check your Email, We Will Contact You ');
+
+    }
+    //end artist form
+    
 }

@@ -1,6 +1,9 @@
 <?php
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ArtistFormcontroller;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +19,12 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index']);
+Route::get('/artist-detail', [HomeController::class, 'detailArtist']);
+Route::get('/artist-form', [HomeController::class, 'detailForm']);
+Route::post('/artist-form-store', [HomeController::class, 'artistStore']);
 
 Route::middleware([
     'auth:sanctum',
@@ -28,3 +35,13 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+Route::get('/add-category', [AdminController::class, 'addCategory']);
+Route::post('/category-store', [AdminController::class, 'categoryStore']);
+Route::get('/category-edit/{id}', [AdminController::class, 'editCategory']);
+Route::put('/updateCategory/{id}', [AdminController::class, 'categoryupdate']);
+Route::get('/artist-detail/{id}', [AdminController::class, 'artistDetail']);
+
+
+
+
