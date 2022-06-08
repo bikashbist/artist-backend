@@ -2,23 +2,48 @@
 <html lang="en">
 
 <head>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>NTAF National Tharu Artist Forum</title>
-
 
     <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet">
     <link rel="stylesheet" href="https://rawgit.com/LeshikJanz/libraries/master/Bootstrap/baguetteBox.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('artist-frontend/style.css') }}">
+    <style>
+        .artist__header {
+            position: relative;
+            height: 400px;
+        }
 
+    </style>
 </head>
 
 <body>
     <div class="artist__header">
 
-        <img class="artist__profile__img" src=" {{ asset('artist-frontend/image/bb.jpg') }}" alt="img">
+
+
+
+        @if(count($coverimage)>0)
+        @foreach($coverimage as $coverimage)
+
+        <img class="artist__profile__img" src=" {{Storage::url($coverimage->image)}} " alt="img">
+
+
+
+
+        @endforeach
+        @else
+        <td>Upload coverimage </td>
+        @endif
+
+        <!-- change profile form -->
+     
+
+
         <div class="artist__header--nav">
 
             <div class="art__header px-5">
@@ -28,54 +53,23 @@
 
                         <div class="col-md-12">
                             <div class="header__logo">
-                                <a href="index.html"> <img src=" {{ asset('artist-frontend/logo-artist.png') }} " alt="logo"></a>
-                                <x-app-layout>
+                                <a href="index.html"> <img src=" {{ asset('artist-frontend/logo-artist.png') }} "
+                                        alt="logo"></a>
+                                <div class="d-flex flex-row-reverse">
+                                    <x-app-layout>
 
-                                </x-app-layout>
+                                    </x-app-layout>
+                                </div>
+
 
                             </div>
                         </div>
 
-                        <!-- <div class="col-md-12 ">
-                            <nav class="navbar navbar-expand-lg mt-3">
-                                <div class="container-fluid">
+                        <div class="col-md-12 mt-5 ">
 
-                                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                        aria-expanded="false" aria-label="Toggle navigation">
-                                        <span class="navbar-toggler-icon"></span>
-                                    </button>
-                                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-                                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                            <li class="nav-item">
-                                                <a class="nav-link active" aria-current="page" href="#">Artists List</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="about.html">About Us</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">For Business</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="artist-detail.html">For Artist</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">Login</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link create-account" href="#">Create artist Account</a>
-                                            </li>
-
-                                        </ul>
-
-                                    </div>
-                                </div>
-                            </nav>
-                        </div> -->
-                        <div class="col-md-12 mt-5">
                             <div>
-                                <h1>Neeta Dhungana</h1>
+                                <h1>{{{ Auth::user()->name  }}} <span class="text-success fs-1">I Am The </span>
+                                    <span class="text-primary fs-1"> {{{ Auth::user()->category  }}}</span></h1>
                             </div>
 
                         </div>
@@ -86,14 +80,137 @@
             </div>
         </div>
     </div>
+    <div class="container">
+            <div class="col-md-4">
+                <form action="{{route('Artist-cover.store')}} " method="POST" enctype="multipart/form-data">
+                    @csrf
+
+                    <div class="row">
+
+                        <div class="col-12 mt-4">
+                            <div class="form-outline">
+                                <label for="formFile" class="form-label ">Upload Cover Image</label>
+                                <input class="form-control  @error('image') is-invalid @enderror  " type="file"
+                                    name="image" id="formFile"
+                                    style="background: #ffffff;line-height: 55px; border: 4px solid #c1c1c1;">
+                            </div>
+                            @error('image')
+                            <div class="alert alert-danger">
+                                {{ $message}}
+                            </div>
+                            @enderror
+                        </div>
+
+                        <div class="col-12 mt-4" hidden>
+                            <div class="form-outline">
+                                <input type="number" name="artistId" class="form-control" id="exampleInputnumber1"
+                                    aria-describedby="numberHelp" value="{{{ Auth::user()->id }}}">
+                                <div id="numberHelp" class="form-text"> id
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 mt-4" hidden>
+                            <div class="form-outline">
+                                <input type="number" name="artist_id" class="form-control" id="exampleInputnumber1"
+                                    aria-describedby="numberHelp" value="{{{ Auth::user()->artist_id }}}">
+                                <div id="numberHelp" class="form-text">artist id
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 mt-4">
+                            <div class="form-outline">
+                                <button type="submit" class="btn btn-primary bg-primary">Submit
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+
+        </div>
     <div class="about__artist px-5 py-5">
 
         <div class="container-xxl ">
             <div class="row">
 
                 <div class="col-md-5 ">
+                    @if(Session::has('profile'))
+                    <div class="alert alert-success">
+                        {{Session::get('profile')}}
+
+                    </div>
+                    @endif
                     <div class="about__artist--img mr-5">
-                        <img src="{{ asset('artist-frontend/image/nita.jpg') }}" alt="artist">
+
+
+
+                        @if(count($profile)>0)
+                        @foreach($profile as $profile)
+
+
+
+                        <img src="{{Storage::url($profile->image)}} " alt="Bridge">
+
+
+                        @endforeach
+                        @else
+                        <td>Upload Profile </td>
+                        @endif
+
+                        <!-- change profile form -->
+                        <form action="{{route('Artist-profile.store')}} " method="POST" enctype="multipart/form-data">
+                            @csrf
+
+                            <div class="row">
+
+                                <div class="col-12 mt-4">
+                                    <div class="form-outline">
+                                        <label for="formFile" class="form-label ">Profile Image</label>
+                                        <input class="form-control  @error('image') is-invalid @enderror  " type="file"
+                                            name="image" id="formFile"
+                                            style="background: #ffffff;line-height: 55px; border: 4px solid #c1c1c1;">
+                                    </div>
+                                    @error('image')
+                                    <div class="alert alert-danger">
+                                        {{ $message}}
+                                    </div>
+                                    @enderror
+                                </div>
+
+                                <div class="col-12 mt-4" hidden>
+                                    <div class="form-outline">
+                                        <input type="number" name="artistId" class="form-control"
+                                            id="exampleInputnumber1" aria-describedby="numberHelp"
+                                            value="{{{ Auth::user()->id }}}">
+                                        <div id="numberHelp" class="form-text"> id
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 mt-4" hidden>
+                                    <div class="form-outline">
+                                        <input type="number" name="artist_id" class="form-control"
+                                            id="exampleInputnumber1" aria-describedby="numberHelp"
+                                            value="{{{ Auth::user()->artist_id }}}">
+                                        <div id="numberHelp" class="form-text">artist id
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 mt-4">
+                                    <div class="form-outline">
+                                        <button type="submit" class="btn btn-primary bg-primary">Submit
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+
+
                     </div>
 
 
@@ -103,25 +220,198 @@
                         <div class="signUp">
 
                             <div class="signUp__title">
-                                <h2>Neeta Dhungana</h2>
+                                <h2>{{{ Auth::user()->name }}} </h2>
                             </div>
                             <div class="inner__contain text-danger text-uppercase mb-4 fw-bold">
-                                ACTRESS
+                                {{{ Auth::user()->category }}}
 
                             </div>
 
                         </div>
-                        <p>Neeta Dhungana is an actress and a model associated with Nepalese film industry. Neeta has
-                            been working in Nepali film industry since teenager. She has played as an elder sister in
-                            Ajambari Nata which was released in 2008.</p>
+                        <p>{{{ Auth::user()->detail }}}</p>
                     </div>
+
                 </div>
 
             </div>
         </div>
 
     </div>
+    <div class="error-msg">
+        <div class="container">
+            @if(Session::has('message'))
+            <div class="alert alert-success">
+                {{Session::get('message')}}
+
+            </div>
+            @endif
+        </div>
+    </div>
     <div class="signUp px-5 ">
+
+        <div class="container-xxl ">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="signUp__title ">
+                        <h2>Choose Gallery </h2>
+                    </div>
+
+                    <form action="{{route('gallery.store')}} " method="POST" enctype="multipart/form-data">
+                        @csrf
+
+                        <div class="row">
+
+                            <div class="col-12 mt-4">
+                                <div class="form-outline">
+                                    <label for="formFile" class="form-label ">Image Gallery</label>
+                                    <input class="form-control  @error('image') is-invalid @enderror  " type="file"
+                                        name="image" id="formFile"
+                                        style="background: #ffffff;line-height: 55px; border: 4px solid #c1c1c1;">
+                                </div>
+                                @error('image')
+                                <div class="alert alert-danger">
+                                    {{ $message}}
+                                </div>
+                                @enderror
+                            </div>
+
+                            <div class="col-12 mt-4" hidden>
+                                <div class="form-outline">
+                                    <input type="number" name="artistId" class="form-control" id="exampleInputnumber1"
+                                        aria-describedby="numberHelp" value="{{{ Auth::user()->id }}}">
+                                    <div id="numberHelp" class="form-text"> id
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 mt-4" hidden>
+                                <div class="form-outline">
+                                    <input type="number" name="artist_id" class="form-control" id="exampleInputnumber1"
+                                        aria-describedby="numberHelp" value="{{{ Auth::user()->artist_id }}}">
+                                    <div id="numberHelp" class="form-text">artist id
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 mt-4">
+                                <div class="form-outline">
+                                    <button type="submit" class="btn btn-primary bg-primary">Submit
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+
+                </div>
+                <div class="col-md-6 about__artist--contain">
+                    <div class=" signUp">
+
+                        <div class="signUp__title my-4">
+                            <h2>Add Your Location </h2>
+                        </div>
+                        <div class="inner__contain text-danger text-uppercase mb-4 fw-bold">
+                            <form action="{{route('address.store')}} " method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="row">
+
+                                    <div class="col-12 mb-4">
+                                        <div class="form-outline">
+                                            <div class="mb-3">
+
+                                                <input type="text" name="province"
+                                                    class="form-control  @error('province') is-invalid @enderror "
+                                                    id="exampleInputEmail1" aria-describedby="emailHelp">
+                                                <div id="emailHelp" class="form-text">Write Your Province</div>
+                                            </div>
+
+
+                                            @error('province')
+                                            <div class="alert alert-danger">
+                                                {{ $message}}
+                                            </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="form-outline">
+                                            <div class="mb-3">
+
+                                                <input type="text" name="district"
+                                                    class="form-control  @error('district') is-invalid @enderror "
+                                                    id="exampleInputEmail1" aria-describedby="emailHelp">
+                                                <div id="emailHelp" class="form-text">Write Your District</div>
+                                            </div>
+
+
+                                            @error('district')
+                                            <div class="alert alert-danger">
+                                                {{ $message}}
+                                            </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mt-4" hidden>
+                                        <div class="form-outline">
+                                            <input type="number" name="artistId" class="form-control"
+                                                id="exampleInputnumber1" aria-describedby="numberHelp"
+                                                value="{{{ Auth::user()->id }}}">
+                                            <div id="numberHelp" class="form-text"> id
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 mt-4" hidden>
+                                        <div class="form-outline">
+                                            <input type="number" name="artist_id" class="form-control"
+                                                id="exampleInputnumber1" aria-describedby="numberHelp"
+                                                value="{{{ Auth::user()->artist_id }}}">
+                                            <div id="numberHelp" class="form-text">artist id
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mt-4">
+                                        <div class="form-outline">
+                                            <button type="submit" class="btn btn-primary bg-primary">Submit
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </form>
+
+
+                        </div>
+                        @if(count($location)>0)
+                        @foreach($location as $location)
+
+
+                        <div class="col-sm-12 col-md-12">
+                            <p>{{$location->provinceId}} , {{$location->districtId}}</p>
+
+                        </div>
+
+                        @endforeach
+                        @else
+                        <td>No any package here</td>
+                        @endif
+
+
+
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="signUp px-5 py-5">
 
         <div class="container-xxl ">
             <div class="row">
@@ -149,49 +439,22 @@
                 <div class="tz-gallery">
 
                     <div class="row">
+                        @if(count($imagegaller)>0)
+                        @foreach($imagegaller as $imagegaller)
+
 
                         <div class="col-sm-12 col-md-4">
-                            <a class="lightbox"
-                                href="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/bridge.jpg">
-                                <img src="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/bridge.jpg"
-                                    alt="Bridge">
+                            <a class="lightbox" href="{{Storage::url($imagegaller->image)}} ">
+                                <img src="{{Storage::url($imagegaller->image)}} " alt="Bridge">
                             </a>
                         </div>
-                        <div class="col-sm-6 col-md-4">
-                            <a class="lightbox"
-                                href="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/park.jpg">
-                                <img src="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/park.jpg"
-                                    alt="Park">
-                            </a>
-                        </div>
-                        <div class="col-sm-6 col-md-4">
-                            <a class="lightbox"
-                                href="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/tunnel.jpg">
-                                <img src="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/tunnel.jpg"
-                                    alt="Tunnel">
-                            </a>
-                        </div>
-                        <div class="col-sm-12 col-md-8">
-                            <a class="lightbox"
-                                href="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/traffic.jpg">
-                                <img src="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/traffic.jpg"
-                                    alt="Traffic">
-                            </a>
-                        </div>
-                        <div class="col-sm-6 col-md-4">
-                            <a class="lightbox"
-                                href="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/rails.jpg">
-                                <img src="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/rails.jpg"
-                                    alt="Coast">
-                            </a>
-                        </div>
-                        <div class="col-sm-6 col-md-4">
-                            <a class="lightbox"
-                                href="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/coast.jpg">
-                                <img src="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/coast.jpg"
-                                    alt="Rails">
-                            </a>
-                        </div>
+
+                        @endforeach
+                        @else
+                        <td>No any package here</td>
+                        @endif
+
+
 
                     </div>
 
@@ -303,7 +566,16 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.full.min.js">
+    </script>
+    <script>
+        $(function () {
+            $("select").select2();
+        });
 
+    </script>
 </body>
 
 </html>

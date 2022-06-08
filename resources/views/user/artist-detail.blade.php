@@ -41,7 +41,7 @@
 </div>
 <div class="about__artist px-5 py-5">
 
-<div class="container-xxl ">
+<div class="container-fluid  ">
     <div class="row">
 
         <div class="col-md-5 ">
@@ -76,7 +76,7 @@
 </div>
 <div class="signUp px-5 ">
 
-<div class="container-xxl ">
+<div class="container-fluid  ">
     <div class="row">
 
         <div class="col-md-12 text-center">
@@ -96,7 +96,7 @@
 
 <div class="gallery__part px-5 pb-5">
 
-<div class="container-xxl ">
+<div class="container-fluid  ">
     <div class="row">
 
         <div class="tz-gallery">

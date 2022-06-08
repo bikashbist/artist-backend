@@ -1,3 +1,4 @@
+
 .header__inner {
     height: 376px;
     -o-object-fit: cover;
@@ -361,3 +362,9 @@
   .gallery__part .baguetteBox-button {
     background-color: transparent !important;
   }/*# sourceMappingURL=style.css.map */
+  @media (min-width: 1400px){
+    .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+      min-width: 1320px;
+  }
+
+}

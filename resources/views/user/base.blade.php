@@ -8,7 +8,7 @@
 
     <div class="header px-5">
 
-        <div class="container-xxl ">
+        <div class="container-fluid  ">
             <div class="row">
 
                 <div class="col-md-12">
@@ -36,15 +36,13 @@
                     </div>
                 </div>
 
-
-
             </div>
         </div>
 
     </div>
     <div class="signUp px-5 py-5">
 
-        <div class="container-xxl ">
+        <div class="container-fluid  ">
             <div class="row">
 
                 <div class="col-md-12 text-center">
@@ -65,7 +63,7 @@
     </div>
     <div class="search px-5 py-5">
 
-        <div class="container-xxl ">
+        <div class="container-fluid  ">
             <div class="row">
 
                 <div class="col-md-12 text-center">

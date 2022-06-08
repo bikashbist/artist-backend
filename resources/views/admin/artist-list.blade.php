@@ -6,35 +6,30 @@
 
             <div class="col-md-5 ">
                 <div class="about__artist--img mr-5">
-                    <h1>This Is For User Name & Password ( Form Data)</h1>
+
                 </div>
 
 
             </div>
-            @if(Session::has('message'))
-            <div class="alert alert-success">
-                {{Session::get('message')}}
-
-            </div>
-            @endif
-            <div class="col-md-12 d-flex flex-wrap">
-                @if(count($artForm)>0)
-                @foreach($artForm as $artForm)
+            <h1>List Artist</h1>
+            @if(count($artist)>0)
+                @foreach($artist as $artist)
                 <div class="card m-2" style="width: 18rem;">
 
                     <div class="card-body">
-                        <h5 class="card-title fw-bold  fs-3">{{$artForm->name}}</h5>
-                        <p class="card-text ">{{$artForm->category}}</p>
-                        <p class="card-text text-muted">{{$artForm->description}}</p>
-                        <a href="{{url('artist-detail',[$artForm->id])}}" class="btn btn-primary btn-sm">Create Password For Artist</a>
+                        <h5 class="card-title fw-bold  fs-3">{{$artist->name}}</h5>
+                        <p class="card-text ">{{$artist->category}}</p>
+                      
+                        <a href="{{url('new-artist-detail',[$artist->id])}}" class="btn btn-primary btn-sm">Assign Artist</a>
                     </div>
                 </div>
                 @endforeach
                 @else
                 <td>No any category here</td>
                 @endif
+        
 
-
+                
                 <!-- <div class="card m-2" style="width: 18rem;">
 
                     <div class="card-body">

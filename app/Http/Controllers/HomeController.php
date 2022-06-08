@@ -5,6 +5,10 @@ use Auth;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\ArtistForm;
+use App\Models\Imagegaller;
+use App\Models\Province;
+use App\Models\Profile;
+use App\Models\Coverimage;
 
 class HomeController extends Controller
 {
@@ -16,12 +20,17 @@ class HomeController extends Controller
     public function index()
     {
         $artForm = ArtistForm::get();
+        $imagegaller = Imagegaller::where('artistId', auth()->id())->get();
+        $location = Province::where('artistId', auth()->id())->get();
+        $profile = Profile::where('artistId', auth()->id())->get();
+        $coverimage = Coverimage::where('artistId', auth()->id())->get();
+       
         if(Auth::id()){
             if(Auth::user()->usertype=='0'){
                 return view('admin.base',compact('artForm'));
             }
             elseif (Auth::user()->usertype=='2'){
-                return view('artist.base');
+                return view('artist.base',compact('imagegaller','location','profile','coverimage'));
             }
             else{
                 return view('user.base');
@@ -30,9 +39,7 @@ class HomeController extends Controller
         else{
             return view('user.base');
         }
-        
-
-      
+         
     }
 
     /**
@@ -40,6 +47,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function create()
     {
         //

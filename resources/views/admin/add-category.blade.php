@@ -21,7 +21,7 @@
                     </div>
                     <div class="col">
                         <div class="form-outline">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary bg-primary">Submit</button>
                         </div>
                     </div>
                 </div>

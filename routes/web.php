@@ -3,6 +3,10 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ArtistFormcontroller;
+use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\ProvienceController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ImageCoverController;
 
 
 /*
@@ -41,6 +45,20 @@ Route::post('/category-store', [AdminController::class, 'categoryStore']);
 Route::get('/category-edit/{id}', [AdminController::class, 'editCategory']);
 Route::put('/updateCategory/{id}', [AdminController::class, 'categoryupdate']);
 Route::get('/artist-detail/{id}', [AdminController::class, 'artistDetail']);
+Route::post('/add-artist', [AdminController::class, 'addArtist']);
+Route::get('/artist-list', [AdminController::class, 'listArtist']);
+
+Route::get('/new-artist-detail/{id}', [AdminController::class, 'NewartistDetail']);
+
+
+Route::resource('gallery', GalleryController::class);
+Route::resource('address', ProvienceController::class);
+Route::resource('Artist-profile', ProfileController::class);
+Route::resource('Artist-cover', ImageCoverController::class);
+
+
+
+
 
 
 

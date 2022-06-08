@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('profile')->nullable();
             $table->string('cover')->nullable();
             $table->string('detail')->nullable();
+            $table->string('artist_id')->nullable();
+            $table->string('category')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

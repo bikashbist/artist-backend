@@ -37,32 +37,44 @@
 
             <div class="col-md-12 mt-4">
 
-                <form action="{{url('category-store')}} " method="POST" enctype="multipart/form-data">
+
+                <form action="{{url('add-artist')}} " method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row mb-4">
-                    <div class="col" >
+                        
+                        <div class="col-4" hidden>
                             <div class="form-outline">
-                                <input type="text" name="usertype" id="form6Example1" class="form-control" value="2"
-                                 />
+                                <input type="text" name="usertype" id="form6Example1" class="form-control" value="2" />
                                 <label class="form-label" for="form6Example1">User Type</label>
                             </div>
 
                         </div>
-                        <div class="col">
+
+                        <div class="col-4" hidden>
                             <div class="form-outline">
                                 <input type="text" name="artist_id" id="form6Example1" class="form-control"
                                     value="{{$artForm->id}}" />
                                 <label class="form-label" for="form6Example1">Artist Id</label>
                             </div>
                         </div>
-                        <div class="col">
+
+                        <div class="col-4">
                             <div class="form-outline">
                                 <input type="text" name="name" id="form6Example1" class="form-control"
                                     value="{{$artForm->name}}" />
                                 <label class="form-label" for="form6Example1">Artist Name</label>
                             </div>
                         </div>
-                        <div class="col">
+
+                        <div class="col-4">
+                            <div class="form-outline">
+                                <textarea name="detail" class="form-control" placeholder="Leave a comment here"
+                                    id="floatingTextarea">{{$artForm->description}}</textarea>
+                                <label for="floatingTextarea">Comments</label>
+                            </div>
+                        </div>
+
+                        <div class="col-4" hidden>
                             <div class="form-outline">
                                 <input type="text" name="category" id="form6Example1" class="form-control"
                                     value="{{$artForm->category}}" />
@@ -70,7 +82,7 @@
                             </div>
 
                         </div>
-                        <div class="col">
+                        <div class="col-4">
                             <div class="form-outline">
                                 <input type="text" name="email" id="form6Example1" class="form-control"
                                     value="{{$artForm->email}}" />
@@ -78,16 +90,15 @@
                             </div>
 
                         </div>
-                        <div class="col">
+                        <div class="col-4">
                             <div class="form-outline">
-                                <input type="password" name="password" id="form6Example1" class="form-control"
-                                 />
+                                <input type="password" name="password" id="form6Example1" class="form-control" />
                                 <label class="form-label" for="form6Example1">Password</label>
                             </div>
 
                         </div>
-                       
-                        <div class="col">
+
+                        <div class="col-4">
                             <div class="form-outline">
                                 <button type="submit" class="btn btn-primary bg-primary">Create Artist</button>
                             </div>
