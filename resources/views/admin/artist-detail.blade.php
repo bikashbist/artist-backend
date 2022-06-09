@@ -9,7 +9,21 @@
             <div class="card mb-3">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="{{Storage::url($artistDetail->image)}} " class="img-fluid rounded-start" alt="profile image">
+                        @if(count($profile)>0)
+                        @foreach($profile->take(1) as $profile)
+
+
+
+
+                        <img src="{{Storage::url($profile->image)}} " class="img-fluid rounded-start"
+                            alt="profile image">
+
+
+                        @endforeach
+                        @else
+                        <td>Upload Profile </td>
+                        @endif
+
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -79,6 +93,23 @@
             </div>
 
 
+
+        </div>
+        <div class="col-md-4">
+            <h1>Cover Images</h1>
+            @if(count($coverImage)>0)
+            @foreach($coverImage->take(1) as $coverImage)
+
+
+
+
+            <img src="{{Storage::url($coverImage->image)}} " class="img-fluid rounded-start" alt="coverImage image">
+
+
+            @endforeach
+            @else
+            <td>Upload coverImage </td>
+            @endif
 
         </div>
 

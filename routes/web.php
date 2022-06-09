@@ -7,6 +7,7 @@ use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ProvienceController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ImageCoverController;
+use App\Http\Controllers\ArtistController;
 
 
 /*
@@ -45,6 +46,7 @@ Route::post('/category-store', [AdminController::class, 'categoryStore']);
 Route::get('/category-edit/{id}', [AdminController::class, 'editCategory']);
 Route::put('/updateCategory/{id}', [AdminController::class, 'categoryupdate']);
 Route::get('/artist-detail/{id}', [AdminController::class, 'artistDetail']);
+Route::get('/artist-mail/{id}', [AdminController::class, 'artistMail']);
 Route::post('/add-artist', [AdminController::class, 'addArtist']);
 Route::get('/artist-list', [AdminController::class, 'listArtist']);
 
@@ -55,6 +57,14 @@ Route::resource('gallery', GalleryController::class);
 Route::resource('address', ProvienceController::class);
 Route::resource('Artist-profile', ProfileController::class);
 Route::resource('Artist-cover', ImageCoverController::class);
+Route::get('/artist-edit/{id}', [ArtistController::class, 'editArtist']);
+Route::post('/update-detail/{id}', [ArtistController::class, 'updateDetail']);
+
+
+Route::get('/new-artist-detail/{id}', [AdminController::class, 'NewartistDetail']);
+//send mail
+Route::post('/sendmail', [ArtistController::class, 'sendmail']);
+
 
 
 

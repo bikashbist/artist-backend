@@ -16,14 +16,18 @@ class HomeController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-     */
+    */
+
     public function index()
     {
         $artForm = ArtistForm::get();
         $imagegaller = Imagegaller::where('artistId', auth()->id())->get();
-        $location = Province::where('artistId', auth()->id())->get();
-        $profile = Profile::where('artistId', auth()->id())->get();
-        $coverimage = Coverimage::where('artistId', auth()->id())->get();
+        $location = Province::where('artistId', auth()->id())-> orderBy('id', 'desc')
+        -> get();
+        $profile = Profile::where('artistId', auth()->id())-> orderBy('id', 'desc')
+        -> get();
+        $coverimage = Coverimage::where('artistId', auth()->id())-> orderBy('id', 'desc')
+        -> get();
        
         if(Auth::id()){
             if(Auth::user()->usertype=='0'){

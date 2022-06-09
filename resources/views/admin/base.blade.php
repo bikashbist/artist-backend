@@ -27,6 +27,7 @@
                         <p class="card-text ">{{$artForm->category}}</p>
                         <p class="card-text text-muted">{{$artForm->description}}</p>
                         <a href="{{url('artist-detail',[$artForm->id])}}" class="btn btn-primary btn-sm">Create Password For Artist</a>
+                        <a href="{{url('artist-mail',[$artForm->id])}}" class="btn btn-success btn-sm">Send Mail</a>
                     </div>
                 </div>
                 @endforeach

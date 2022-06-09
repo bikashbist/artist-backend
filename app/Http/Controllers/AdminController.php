@@ -7,6 +7,8 @@ use App\Models\ArtistForm;
 use App\Models\User;
 use App\Models\Province;
 use App\Models\Imagegaller;
+use App\Models\Profile;
+use App\Models\Coverimage;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -53,6 +55,9 @@ class AdminController extends Controller
         return view('admin.artist-form',compact('artForm'));
     }
 
+  
+    
+
     //add artist
 
      public function addArtist(Request $request)
@@ -92,7 +97,17 @@ class AdminController extends Controller
         $artistDetail = User::find($id);
         $address = Province::where('artist_id',$artistDetail->artist_id)->get();
         $gallery = Imagegaller::where('artist_id',$artistDetail->artist_id)->get();
-        return view('admin.artist-detail',compact('artistDetail','address','gallery'));
+        $profile = Profile::where('artist_id',$artistDetail->artist_id)-> orderBy('id', 'desc')
+        -> get();
+        $coverImage = Coverimage::where('artist_id',$artistDetail->artist_id)-> orderBy('id', 'desc')
+        -> get();
+        return view('admin.artist-detail',compact('artistDetail','address','gallery','profile','coverImage'));
+    }
+      //artist mail
+      public function artistMail($id){
+        $artistMail = ArtistForm::find($id);
+        $mail = User::where('artist_id',$artistMail->id)->get();
+        return view('admin.artist-mail',compact('mail'));
     }
     
     

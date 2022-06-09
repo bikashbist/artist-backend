@@ -28,7 +28,7 @@
 
 
         @if(count($coverimage)>0)
-        @foreach($coverimage as $coverimage)
+        @foreach($coverimage->take(1) as $coverimage)
 
         <img class="artist__profile__img" src=" {{Storage::url($coverimage->image)}} " alt="img">
 
@@ -53,7 +53,7 @@
 
                         <div class="col-md-12">
                             <div class="header__logo">
-                                <a href="index.html"> <img src=" {{ asset('artist-frontend/logo-artist.png') }} "
+                                <a href="/"> <img src=" {{ asset('artist-frontend/logo-artist.png') }} "
                                         alt="logo"></a>
                                 <div class="d-flex flex-row-reverse">
                                     <x-app-layout>
@@ -92,7 +92,7 @@
                                 <label for="formFile" class="form-label ">Upload Cover Image</label>
                                 <input class="form-control  @error('image') is-invalid @enderror  " type="file"
                                     name="image" id="formFile"
-                                    style="background: #ffffff;line-height: 55px; border: 4px solid #c1c1c1;">
+                                   >
                             </div>
                             @error('image')
                             <div class="alert alert-danger">
@@ -121,7 +121,7 @@
 
                         <div class="col-12 mt-4">
                             <div class="form-outline">
-                                <button type="submit" class="btn btn-primary bg-primary">Submit
+                                <button type="submit" class="btn btn-primary bg-primary btn-sm">Submit
                                 </button>
                             </div>
                         </div>
@@ -148,7 +148,7 @@
 
 
                         @if(count($profile)>0)
-                        @foreach($profile as $profile)
+                        @foreach($profile->take(1) as $profile)
 
 
 
@@ -171,7 +171,7 @@
                                         <label for="formFile" class="form-label ">Profile Image</label>
                                         <input class="form-control  @error('image') is-invalid @enderror  " type="file"
                                             name="image" id="formFile"
-                                            style="background: #ffffff;line-height: 55px; border: 4px solid #c1c1c1;">
+                                           >
                                     </div>
                                     @error('image')
                                     <div class="alert alert-danger">
@@ -202,7 +202,7 @@
 
                                 <div class="col-12 mt-4">
                                     <div class="form-outline">
-                                        <button type="submit" class="btn btn-primary bg-primary">Submit
+                                        <button type="submit" class="btn btn-primary bg-primary btn-sm">Submit
                                         </button>
                                     </div>
                                 </div>
@@ -222,13 +222,14 @@
                             <div class="signUp__title">
                                 <h2>{{{ Auth::user()->name }}} </h2>
                             </div>
+
                             <div class="inner__contain text-danger text-uppercase mb-4 fw-bold">
                                 {{{ Auth::user()->category }}}
 
                             </div>
 
                         </div>
-                        <p>{{{ Auth::user()->detail }}}</p>
+                        <p>{{{ Auth::user()->detail }}} <a href="{{url('/artist-edit',[Auth::user()->id])}}" class="btn btn-primary btn-sm">Edit</a></p>
                     </div>
 
                 </div>
@@ -266,7 +267,7 @@
                                     <label for="formFile" class="form-label ">Image Gallery</label>
                                     <input class="form-control  @error('image') is-invalid @enderror  " type="file"
                                         name="image" id="formFile"
-                                        style="background: #ffffff;line-height: 55px; border: 4px solid #c1c1c1;">
+                                       >
                                 </div>
                                 @error('image')
                                 <div class="alert alert-danger">
@@ -295,7 +296,7 @@
 
                             <div class="col-12 mt-4">
                                 <div class="form-outline">
-                                    <button type="submit" class="btn btn-primary bg-primary">Submit
+                                    <button type="submit" class="btn btn-primary bg-primary btn-sm">Submit
                                     </button>
                                 </div>
                             </div>
@@ -373,7 +374,7 @@
                                     </div>
                                     <div class="col-12 mt-4">
                                         <div class="form-outline">
-                                            <button type="submit" class="btn btn-primary bg-primary">Submit
+                                            <button type="submit" class="btn btn-primary bg-primary btn-sm">Submit
                                             </button>
                                         </div>
                                     </div>
@@ -384,7 +385,7 @@
 
                         </div>
                         @if(count($location)>0)
-                        @foreach($location as $location)
+                        @foreach($location->take(1) as $location)
 
 
                         <div class="col-sm-12 col-md-12">

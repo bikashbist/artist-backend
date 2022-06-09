@@ -103,6 +103,7 @@
                                 <button type="submit" class="btn btn-primary bg-primary">Create Artist</button>
                             </div>
                         </div>
+                      
                     </div>
 
                 </form>
