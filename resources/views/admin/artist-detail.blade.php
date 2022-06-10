@@ -34,6 +34,100 @@
                             <p class="card-text">{{$artistDetail->email}}</p>
                             <p class="card-text">{{$artistDetail->detail}}</p>
                             <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+
+                            @if(Session::has('message'))
+
+                            <div class="alert alert-success">
+
+                                {{Session::get('message')}}
+
+                            </div>
+
+                            @endif
+
+
+                            <form action="{{url('user-artist')}} " method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="row mb-4">
+
+
+
+                                    <div class="col-4" hidden>
+                                        <div class="form-outline">
+                                            <input type="text" name="artistId" id="form6Example1" class="form-control"
+                                                value="{{$artistDetail->id}}" />
+                                            <label class="form-label" for="form6Example1"> Id</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-4" hidden>
+                                        <div class="form-outline">
+                                            <input type="text" name="artist_id" id="form6Example1" class="form-control"
+                                                value="{{$artistDetail->artist_id}}" />
+                                            <label class="form-label" for="form6Example1">Artist Id</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-4" hidden>
+                                        <div class="form-outline">
+                                            <input type="text" name="name" id="form6Example1" class="form-control"
+                                                value="{{$artistDetail->name}}" />
+                                            <label class="form-label" for="form6Example1">Artist Name</label>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-4" hidden>
+                                        <div class="form-outline">
+                                            <textarea name="detail" class="form-control"
+                                                placeholder="Leave a comment here"
+                                                id="floatingTextarea">{{$artistDetail->detail}}</textarea>
+                                            <label for="floatingTextarea">Comments</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-4" hidden>
+                                        <div class="form-outline">
+                                            <input type="text" name="category" id="form6Example1" class="form-control"
+                                                value="{{$artistDetail->category}}" />
+                                            <label class="form-label" for="form6Example1">Artist Category</label>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-4" hidden>
+                                        <div class="form-outline">
+                                            <input type="text" name="email" id="form6Example1" class="form-control"
+                                                value="{{$artistDetail->email}}" />
+                                            <label class="form-label" for="form6Example1">Artist Email</label>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="col-4 mt-4">
+                                        <div class="form-outline">
+                                            <button type="submit" class="btn btn-primary bg-primary">Send To User
+                                                Dashboard</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
                         </div>
                     </div>
                 </div>

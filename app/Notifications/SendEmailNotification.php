@@ -10,6 +10,7 @@ use Illuminate\Notifications\Notification;
 class SendEmailNotification extends Notification
 {
     use Queueable;
+  
     private $details;
     /**
      * Create a new notification instance.
@@ -41,12 +42,12 @@ class SendEmailNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->heading($this->details['heading'])
+                    ->line($this->details['heading'])
                     ->line($this->details['email'])
-                    ->line($this->details['paddword'])
+                    ->line($this->details['password'])
                 
                     ->action($this->details['linkTitle'], $this->details['link'])
-                    ->link($this->details['footer']);
+                    ->line($this->details['footer']);
                     
                    
     }

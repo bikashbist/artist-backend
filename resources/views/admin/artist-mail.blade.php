@@ -21,7 +21,7 @@
                     <p class="card-text ">{{$mail->password}}</p>
 
                 </div>
-                <form class="row" action="{{url('/sendmail', $mail->id)}}" method="POST">
+                <form class="row" action="{{url('/sendmail', $mail->artist_id)}}" method="POST" enctype="multipart/form-data" >
                     @csrf
                 <div class="col-6 mb-3">
                         <label for="exampleInputEmail1" class="form-label">Mail Heading</label>
@@ -43,7 +43,7 @@
                     </div>
                     <div class="col-6 mb-3">
                         <label for="exampleInputPassword1" class="form-label">Login Link</label>
-                        <input type="url" name="link" class="form-control" id="exampleInputPassword1">
+                        <input type="text" name="link" class="form-control" id="exampleInputPassword1">
                     </div>
                     
                     <div class="col-6 mb-3">

@@ -59,11 +59,12 @@ Route::resource('Artist-profile', ProfileController::class);
 Route::resource('Artist-cover', ImageCoverController::class);
 Route::get('/artist-edit/{id}', [ArtistController::class, 'editArtist']);
 Route::post('/update-detail/{id}', [ArtistController::class, 'updateDetail']);
+Route::post('/user-artist', [ArtistController::class, 'userArtist']);
 
 
 Route::get('/new-artist-detail/{id}', [AdminController::class, 'NewartistDetail']);
 //send mail
-Route::post('/sendmail', [ArtistController::class, 'sendmail']);
+Route::POST('/sendmail/{id}', [ArtistController::class, 'sendmail']);
 
 
 
