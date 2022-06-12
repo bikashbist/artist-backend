@@ -18,22 +18,45 @@
             </div>
             @endif
             <div class="col-md-12 d-flex flex-wrap">
-                @if(count($artForm)>0)
-                @foreach($artForm as $artForm)
-                <div class="card m-2" style="width: 18rem;">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Artist Type</th>
+                        <th scope="col">Create Password</th>
+                        <th scope="col">Action</th>
 
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold  fs-3">{{$artForm->name}}</h5>
-                        <p class="card-text ">{{$artForm->category}}</p>
-                        <p class="card-text text-muted">{{$artForm->description}}</p>
-                        <a href="{{url('artist-detail',[$artForm->id])}}" class="btn btn-primary btn-sm">Create Password For Artist</a>
-                        <a href="{{url('artist-mail',[$artForm->id])}}" class="btn btn-success btn-sm">Send Mail</a>
-                    </div>
-                </div>
-                @endforeach
-                @else
-                <td>No any category here</td>
-                @endif
+                    </tr>
+                </thead>
+                <tbody>
+                    @if(count($artForm)>0)
+                    @foreach($artForm as $artForm)
+
+                    <tr>
+                        <th scope="row"> <a href="{{url('artist-detail',[$artForm->id])}}" >{{$artForm->name}}</a>     </th>
+                        <td>{{$artForm->category}}</td>
+                        <td> <a href="{{url('artist-detail',[$artForm->id])}}" class="btn btn-primary btn-sm">Create Password For Artist</a></td>
+                     
+                        <td> <a href="{{url('artist-mail',[$artForm->id])}}" class="btn btn-success btn-sm mt-3">Send Mail</a></td>
+
+                    </tr>
+                    @endforeach
+                    @else
+                    <td>No any category here</td>
+                    @endif
+
+
+                </tbody>
+            </table>
+
+
+
+
+
+
+
+
+          
 
 
                 <!-- <div class="card m-2" style="width: 18rem;">

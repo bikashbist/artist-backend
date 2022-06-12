@@ -9,6 +9,7 @@ use App\Models\Imagegaller;
 use App\Models\Province;
 use App\Models\Profile;
 use App\Models\Coverimage;
+use App\Models\Userartist;
 
 class HomeController extends Controller
 {
@@ -20,6 +21,9 @@ class HomeController extends Controller
 
     public function index()
     {
+        $listArtist = Userartist::get();
+       
+      
         $artForm = ArtistForm::get();
         $imagegaller = Imagegaller::where('artistId', auth()->id())->get();
         $location = Province::where('artistId', auth()->id())-> orderBy('id', 'desc')
@@ -37,11 +41,11 @@ class HomeController extends Controller
                 return view('artist.base',compact('imagegaller','location','profile','coverimage'));
             }
             else{
-                return view('user.base');
+                return view('user.base',compact('listArtist'));
             }
         }
         else{
-            return view('user.base');
+            return view('user.base',compact('listArtist'));
         }
          
     }
@@ -110,11 +114,19 @@ class HomeController extends Controller
      */
     public function destroy($id)
     {
-        //
+
     }
-    public function detailArtist()
+    public function detailArtist($id)
     {
-        return view('user.artist-detail');
+        $artistview = Userartist::find($id);
+        $address = Province::where('artist_id',$artistview->artist_id)->orderBy('id', 'desc')->get();
+        $gallery = Imagegaller::where('artist_id',$artistview->artist_id)->get();
+        $profile = Profile::where('artist_id',$artistview->artist_id)-> orderBy('id', 'desc')
+        -> get();
+        $coverImage = Coverimage::where('artist_id',$artistview->artist_id)-> orderBy('id', 'desc')
+        -> get();
+       
+        return view('user.artist-detail',compact('artistview','address','gallery','profile','coverImage'));
     }
     public function detailForm()
     {

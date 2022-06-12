@@ -12,42 +12,96 @@
 
             </div>
             <h1>List Artist</h1>
-            @if(count($artist)>0)
-                @foreach($artist as $artist)
-                <div class="card m-2" style="width: 18rem;">
 
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold  fs-3">{{$artist->name}}</h5>
-                        <p class="card-text ">{{$artist->category}}</p>
-                      
-                        <a href="{{url('new-artist-detail',[$artist->id])}}" class="btn btn-primary btn-sm">Assign Artist</a>
-                    </div>
-                </div>
-                @endforeach
-                @else
-                <td>No any category here</td>
-                @endif
-        
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Artist Type</th>
+                        <th scope="col">Action</th>
 
-                
-                <!-- <div class="card m-2" style="width: 18rem;">
+                    </tr>
+                </thead>
+                <tbody>
+                    @if(count($artist)>0)
+                    @foreach($artist as $artist)
 
-                    <div class="card-body">
-                        <h5 class="card-title">Kanchan Kaudhary</h5>
-                        <p class="card-text text-muted">Some quick example text to build on the Kanchan Kaudhary and
-                            make up the
-                            bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary btn-sm">View</a>
-                    </div>
-                </div> -->
+                    <tr>
+                        <th scope="row">{{$artist->name}}</th>
+                        <td>{{$artist->category}}</td>
+                        <td> <a href="{{url('new-artist-detail',[$artist->id])}}" class="btn btn-primary btn-sm">Assign
+                                Artist</a></td>
+
+                    </tr>
+                    @endforeach
+                    @else
+                    <td>No any category here</td>
+                    @endif
+
+
+                </tbody>
+            </table>
+
+
+
+
+
+
+
+
+
+
+            <div class="col-md-12">
+                User Dashboard Artist List
+            </div>
+
+            @if(Session::has('message'))
+
+            <div class="alert alert-success">
+
+                {{Session::get('message')}}
 
             </div>
 
+            
+
+            @endif
 
 
 
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Artist Type</th>
+                        <th scope="col">Artist Email</th>
+                        <th scope="col">Action</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @if(count($artistview)>0)
+                    @foreach($artistview as $artistview)
+
+                    <tr>
+                        <th scope="row">{{$artistview->name}}</th>
+                        <td>{{$artistview->category}}</td>
+                        <td>{{$artistview->email}}</td>
+                        <td> <a href="{{url('user-artist-delete',[$artistview->id])}}" class="btn btn-danger btn-sm">Delete</a></td>
+
+                    </tr>
+                    @endforeach
+                    @else
+                    <td>No any category here</td>
+                    @endif
+
+
+                </tbody>
+            </table>
         </div>
+
     </div>
+</div>
 
 </div>
 

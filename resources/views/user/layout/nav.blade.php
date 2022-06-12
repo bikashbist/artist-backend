@@ -9,16 +9,16 @@
 
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Artists List</a>
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="about.html">About Us</a>
+                    <a class="nav-link" href="#">About Us</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">For Business</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="artist-detail.html">For Artist</a>
+                    <a class="nav-link" href="#">For Artist</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('login') }}">Login</a>

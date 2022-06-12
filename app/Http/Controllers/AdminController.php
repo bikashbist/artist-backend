@@ -9,6 +9,8 @@ use App\Models\Province;
 use App\Models\Imagegaller;
 use App\Models\Profile;
 use App\Models\Coverimage;
+use App\Models\Userartist;
+
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -90,10 +92,22 @@ class AdminController extends Controller
     public function listArtist() {
         
         $artist = User::where('usertype','2')->get();
+        $artistview = Userartist::get();
        
-        return view('admin.artist-list',compact('artist'));
+        return view('admin.artist-list',compact('artist','artistview'));
     }
+
+    public function DeleteArtist($id){
+        $artistdelete = Userartist::find($id);
+        $artistdelete->delete();
+   
+        return redirect()->back()->with('message',' delete Succeessfully');
+    }
+ 
+    
+
     public function NewartistDetail($id){
+        
         $artistDetail = User::find($id);
         $address = Province::where('artist_id',$artistDetail->artist_id)->get();
         $gallery = Imagegaller::where('artist_id',$artistDetail->artist_id)->get();

@@ -8,6 +8,7 @@ use App\Http\Controllers\ProvienceController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ImageCoverController;
 use App\Http\Controllers\ArtistController;
+use App\Http\Controllers\UserController;
 
 
 /*
@@ -27,7 +28,7 @@ use App\Http\Controllers\ArtistController;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index']);
-Route::get('/artist-detail', [HomeController::class, 'detailArtist']);
+Route::get('/artist-detail-artist/{id}', [HomeController::class, 'detailArtist']);
 Route::get('/artist-form', [HomeController::class, 'detailForm']);
 Route::post('/artist-form-store', [HomeController::class, 'artistStore']);
 
@@ -49,6 +50,7 @@ Route::get('/artist-detail/{id}', [AdminController::class, 'artistDetail']);
 Route::get('/artist-mail/{id}', [AdminController::class, 'artistMail']);
 Route::post('/add-artist', [AdminController::class, 'addArtist']);
 Route::get('/artist-list', [AdminController::class, 'listArtist']);
+Route::get('/user-artist-delete/{id}', [AdminController::class, 'DeleteArtist']);
 
 Route::get('/new-artist-detail/{id}', [AdminController::class, 'NewartistDetail']);
 
@@ -67,7 +69,9 @@ Route::get('/new-artist-detail/{id}', [AdminController::class, 'NewartistDetail'
 Route::POST('/sendmail/{id}', [ArtistController::class, 'sendmail']);
 
 
-
+// user controller
+Route::get('/artists', [UserController::class, 'index'])->name('artists.index');
+Route::get('/search', [UserController::class, 'search']);
 
 
 

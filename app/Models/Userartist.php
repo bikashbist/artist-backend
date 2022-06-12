@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Userartist extends Model
 {
     use HasFactory;
-    protected $fillable = ['artistId','artist_id','name','email','detail','category'];
+    protected $fillable = ['artistId','artist_id','name','email','image','category'];
 }

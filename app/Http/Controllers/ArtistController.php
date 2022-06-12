@@ -52,15 +52,20 @@ class ArtistController extends Controller
    }
    public function userArtist(Request $request)
    {
-   
+      $this->validate($request,[
+           
+         'image'=>'required|mimes:jpeg,png,jpg,gif,svg',
+     ]);
+      $image = $request->file('image')->store('public/file');
       Userartist::create([
-
+      
            'artist_id'=>$request->artist_id,
            'artistId'=>$request->artistId,
            'name'=>$request->name,
            'email'=>$request->email,
-           'detail'=>$request->detail,
+        
            'category'=>$request->category,
+           'image'=>$image
 
        ]);
 

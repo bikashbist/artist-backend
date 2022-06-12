@@ -19,7 +19,7 @@ class CreateUserartistsTable extends Migration
             $table->text('artistId');
             $table->text('name');
             $table->text('email');
-            $table->text('detail');
+            $table->text('image');
             $table->text('category');
             $table->timestamps();
         });

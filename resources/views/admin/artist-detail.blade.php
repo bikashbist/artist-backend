@@ -45,6 +45,7 @@
 
                             @endif
 
+                            <h1 style="font-size:30px;margin-top:30px"> Artist Profile To User Dashboard</h1>
 
                             <form action="{{url('user-artist')}} " method="POST" enctype="multipart/form-data">
                                 @csrf
@@ -78,12 +79,12 @@
 
 
 
-                                    <div class="col-4" hidden>
+                                    <div class="col-4" >
                                         <div class="form-outline">
-                                            <textarea name="detail" class="form-control"
-                                                placeholder="Leave a comment here"
-                                                id="floatingTextarea">{{$artistDetail->detail}}</textarea>
-                                            <label for="floatingTextarea">Comments</label>
+                                        <label for="formFile" class="form-label ">Profile Image</label>
+                                        <input class="form-control  @error('image') is-invalid @enderror  " type="file"
+                                            name="image" id="formFile"
+                                           >
                                         </div>
                                     </div>
 
